@@ -1,10 +1,10 @@
 # Heroku::Autoscale
 
-    This is a fork of @ddollar's original gem. It's a bit quick and dirty right now. 
-    
-    The main change I wanted to make was to have the scaling action this performs to be explicit. So instead of having code invoked on every single web request that this gem intercepts (it's a Rack app) which doesn't work for anyone that has multiple dynos going in production, you now have to explicitly ask your app to auto scale using a GET request to the app. 
-    
-    With that in place, you can issue that GET request from cron or clockwork or some alternative so that you don't have to worry about your autoscale commands running concurently. 
+This is a fork of @ddollar's original gem. It's a bit quick and dirty right now. 
+
+The main change I wanted to make was to have the scaling action this performs to be explicit. So instead of having code invoked on every single web request that this gem intercepts (it's a Rack app) which doesn't work for anyone that has multiple dynos going in production, you now have to explicitly ask your app to auto scale using a GET request to the app. 
+
+With that in place, you can issue that GET request from cron or clockwork or some alternative so that you don't have to worry about your autoscale commands running concurently. 
 
 ## Installation
 
