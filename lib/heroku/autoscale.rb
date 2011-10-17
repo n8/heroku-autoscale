@@ -17,13 +17,12 @@ module Heroku
     end
 
     def call(env)
-      if options[:defer]
-        EventMachine.defer { autoscale(env) }
+      if env["PATH_INFO"] == "/autoscale/#{options[:autoscale_key]}"
+        autoscale env
+        [200, {'Content-Type' => 'text/plain'}, ["Current wait time: #{env["HTTP_X_HEROKU_QUEUE_WAIT_TIME"]}"]]
       else
-        autoscale(env)
-      end
-
-      app.call(env)
+        app.call(env)
+      end 
     end
 
 private ######################################################################
@@ -54,7 +53,8 @@ private ######################################################################
     end
 
     def current_dynos
-      heroku.info(options[:app_name])[:dynos].to_i
+      # heroku.info(options[:app_name])[:dynos].to_i
+      heroku.ps(options[:app_name]).select{|jobby| jobby['process'].index("web.") != nil}.size
     end
 
     def default_options
@@ -77,7 +77,7 @@ private ######################################################################
     end
 
     def set_dynos(count)
-      heroku.set_dynos(options[:app_name], count)
+      heroku.ps_scale(options[:app_name], :type => 'web', :qty => count)
       @last_scaled = Time.now
     end
 
