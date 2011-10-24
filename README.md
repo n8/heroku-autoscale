@@ -9,7 +9,7 @@ With that in place, you can issue that GET request from cron or clockwork or som
 ## Installation
 
     # Gemfile
-    gem 'heroku-autoscale', :git => "git@github.com:n8/heroku-autoscale.git"
+    gem 'n8-heroku-autoscale', :require => "heroku/autoscale"
 
 ## Usage (Rails 2.x)
 
