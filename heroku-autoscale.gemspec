@@ -63,7 +63,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rr>, ["~> 0.10.11"])
     s.add_dependency(%q<rspec>, ["~> 2.0.0"])
     s.add_dependency(%q<eventmachine>, [">= 0"])
-    s.add_dependency(%q<heroku>, ["~> 2.9.0"])
+    s.add_dependency(%q<heroku>, ["~> 2.39.0"])
     s.add_dependency(%q<rack>, ["~> 1.0"])
   end
 end
